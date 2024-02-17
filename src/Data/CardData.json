@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "name": "Bit Camp",
+    "name": "BitCamp",
     "frontImage": "/public/Bitcamp/bitcamp-front.svg",
     "backImage": "/public/Bitcamp/bitcamp-back.svg",
     "colors": ["#242840", "#000000", "#AA1D50"],

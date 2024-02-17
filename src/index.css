@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -9,107 +11,176 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: sans-serif;
+  overflow: hidden;
+  font-family: "Nunito", sans-serif;
 }
 
 .container {
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  border: 1px solid red;
-}
-
-.card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  gap: 20px;
 }
 
 .card-colors {
-  width: 100%;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
-  padding: 10px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  gap: 10px;
 }
 
-.color {
-  width: 20px;
-  height: 20px;
-
-  background-color: red;
-  margin-left: 10px;
-  border-radius: 100px;
+.card-colors img {
+  width: 80px;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
-.color:hover {
+.card-colors img:hover {
   transform: scale(1.1);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
-.select-ul {
+.choosedBtn {
   position: relative;
-  list-style: none;
-}
+  width: 180px;
 
-.select-btn {
-  padding: 10px;
-  border: 1px solid red;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
-.select-btn:active ~ .choose-ul {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 15px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-right: 15px;
+
+  border-radius: 10px;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.choose-ul {
+.choosedBtn:active {
+  transform: scale(0.9);
+}
+
+.choosed-list {
   position: absolute;
-  border: 1px solid red;
-  list-style: none;
+  width: 180px;
+  margin-top: 5px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.choosed-list div {
+  margin: 5px;
   padding: 10px;
-  display: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.choosed-list div:hover {
+  background-color: #131a3c56;
+}
+
+#inputs-form {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.name-input,
+.number-input {
+  display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.choose-ul li {
-  padding: 10px;
-  border: 1px solid red;
-  border-radius: 10px;
-}
-
-#inputs-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.name-input-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.name-input,
-.number-input,
-.date-input,
-.cvc-input {
-  display: flex;
-  flex-direction: column;
+.name-input label,
+.number-input label {
+  font-size: 18px;
 }
 
 .name-input input,
 .number-input input {
+  outline: transparent;
+  border: 1px solid silver;
+  font-size: 16px;
   padding-left: 16px;
   padding-top: 11px;
   padding-bottom: 11px;
   padding-right: 191px;
-  font-size: 18px;
-
-  outline: transparent;
-  border: 1px solid #dfdee0;
   border-radius: 10px;
 }
 
+.detail-inputs-container {
+  display: flex;
+  align-items: center;
+}
+
+.date-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.date-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.date-inputs input {
+  outline: transparent;
+  width: 40%;
+  font-size: 16px;
+  padding-left: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid silver;
+}
+
+.cvc-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cvc-input input {
+  outline: transparent;
+  font-size: 16px;
+  padding-left: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 109px;
+  border-radius: 10px;
+  border: 1px solid silver;
+}
+
+.defaultbtn {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.disablebtn {
+  cursor: not-allowed;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 10px;
+  border: none;
+  font-size: 18px;
+  background-color: rgb(210, 210, 210);
+}
+
+.error-message {
+  color: tomato;
+  display: none;
+}

@@ -44,7 +44,9 @@ function InputForm() {
           </div>
         </div>
       </div>
-      <button type="submit">Confirm</button>
+      <button disabled className="defaultbtn" type="submit">
+        Confirm
+      </button>
     </form>
   );
 }
