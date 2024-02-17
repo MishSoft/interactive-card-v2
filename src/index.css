@@ -1,0 +1,115 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border: 1px solid red;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.card-colors {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+
+  background-color: red;
+  margin-left: 10px;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.color:hover {
+  transform: scale(1.1);
+}
+
+.select-ul {
+  position: relative;
+  list-style: none;
+}
+
+.select-btn {
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.select-btn:active ~ .choose-ul {
+  display: flex;
+}
+
+.choose-ul {
+  position: absolute;
+  border: 1px solid red;
+  list-style: none;
+  padding: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choose-ul li {
+  padding: 10px;
+  border: 1px solid red;
+  border-radius: 10px;
+}
+
+#inputs-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-input,
+.number-input,
+.date-input,
+.cvc-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.name-input input,
+.number-input input {
+  padding-left: 16px;
+  padding-top: 11px;
+  padding-bottom: 11px;
+  padding-right: 191px;
+  font-size: 18px;
+
+  outline: transparent;
+  border: 1px solid #dfdee0;
+  border-radius: 10px;
+}
+
