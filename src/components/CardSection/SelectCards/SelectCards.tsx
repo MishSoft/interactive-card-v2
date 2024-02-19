@@ -1,16 +1,17 @@
-// import React from 'react'
-import { useState } from "react";
-import { FaAngleDown } from "react-icons/fa6";
+import { MouseEvent, useState } from "react";
 import { motion, Variants } from "framer-motion";
+import "animate.css";
+import { FaAngleUp } from "react-icons/fa";
 
 function SelectCards() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [choosedCard, setChoosedCard] = useState<string>("BitCamp");
 
   const itemVariants: Variants = {
     open: {
       opacity: 1,
       y: 0,
-      transition: { type: "string", stiffness: 300, damping: 24 },
+      transition: { type: "spring", stiffness: 300, damping: 24 },
     },
     closed: {
       opacity: 0,
@@ -19,6 +20,10 @@ function SelectCards() {
         duration: 0.2,
       },
     },
+  };
+
+  const caughtCardName = (e: MouseEvent<HTMLDivElement>) => {
+    setChoosedCard((e.target as HTMLDivElement).innerHTML);
   };
 
   return (
@@ -32,7 +37,30 @@ function SelectCards() {
         onClick={() => setIsOpen(!isOpen)}
         className="choosedBtn"
       >
-        Choose Card <FaAngleDown />
+        <motion.div
+          className="box"
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{
+            duration: 0.8,
+            delay: 0.5,
+            ease: [0, 0.71, 0.2, 1.01],
+          }}
+        >
+          {choosedCard}
+        </motion.div>
+        <motion.div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          className="box"
+          animate={{ rotate: `${!isOpen ? "180deg" : "0deg"}` }}
+          transition={{ type: "spring" }}
+        >
+          <FaAngleUp />
+        </motion.div>
       </motion.div>
       <motion.div
         variants={{
@@ -58,9 +86,15 @@ function SelectCards() {
         className="choosed-list"
         style={{ pointerEvents: isOpen ? "auto" : "none" }}
       >
-        <motion.div variants={itemVariants}>BitCamp</motion.div>
-        <motion.div variants={itemVariants}>King Tamar</motion.div>
-        <motion.div variants={itemVariants}>Colliseum</motion.div>
+        <motion.div onClick={caughtCardName} variants={itemVariants}>
+          BitCamp
+        </motion.div>
+        <motion.div onClick={caughtCardName} variants={itemVariants}>
+          King Tamar
+        </motion.div>
+        <motion.div onClick={caughtCardName} variants={itemVariants}>
+          Colliseum
+        </motion.div>
       </motion.div>
     </motion.div>
   );

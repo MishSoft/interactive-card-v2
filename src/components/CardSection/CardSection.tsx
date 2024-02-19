@@ -7,8 +7,10 @@ import SelectCards from "./SelectCards/SelectCards";
 function CardSection() {
   return (
     <div className="card-container">
-      <ColorSection />
-      <CardImage />
+      <div>
+        <ColorSection />
+        <CardImage />
+      </div>
       <SelectCards />
     </div>
   );

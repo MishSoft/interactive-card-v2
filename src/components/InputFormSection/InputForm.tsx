@@ -1,12 +1,24 @@
 // import React from 'react'
+import { useContext } from "react";
+import { FormContext } from "../../context/FormContext";
 
 function InputForm() {
+  // const context = useContext(FormContext);
+
+  const { inputData, handleInputData } = useContext(FormContext);
+
   return (
     <form id="inputs-form">
       <div className="name-input-container">
         <div className="name-input">
           <label htmlFor="">cardholder name</label>
-          <input type="text" placeholder="e.g Jane Appleseed" />
+          <input
+            onChange={handleInputData}
+            value={inputData.cardname}
+            name="cardname"
+            type="text"
+            placeholder="e.g Jane Appleseed"
+          />
           <div className="error-message">
             <span>Can't be blank</span>
           </div>
@@ -16,7 +28,13 @@ function InputForm() {
       <div className="number-input-container">
         <div className="number-input">
           <label htmlFor="">cardholder name</label>
-          <input type="text" placeholder="e.g Jane Appleseed" />
+          <input
+            onChange={handleInputData}
+            value={inputData.cardnumber}
+            type="text"
+            name="cardnumber"
+            placeholder="e.g Jane Appleseed"
+          />
           <div className="error-message">
             <span>Can't be blank</span>
           </div>
@@ -27,8 +45,20 @@ function InputForm() {
         <div className="date-input-container">
           <label htmlFor="">exp. date(mm/yy)</label>
           <div className="date-inputs">
-            <input type="text" placeholder="MM" />
-            <input type="text" placeholder="YY" />
+            <input
+              onChange={handleInputData}
+              value={inputData.mm}
+              type="text"
+              name="mm"
+              placeholder="MM"
+            />
+            <input
+              onChange={handleInputData}
+              value={inputData.yy}
+              type="text"
+              name="yy"
+              placeholder="YY"
+            />
           </div>
           <div className="error-message">
             <span>Can't be blank</span>
@@ -37,7 +67,13 @@ function InputForm() {
         <div className="cvc-input container">
           <div className="cvc-input">
             <label htmlFor="">cvc</label>
-            <input type="text" placeholder="e.g 123" />
+            <input
+              onChange={handleInputData}
+              value={inputData.cvc}
+              type="text"
+              name="cvc"
+              placeholder="e.g 123"
+            />
           </div>
           <div className="error-message">
             <span>Can't be blank</span>

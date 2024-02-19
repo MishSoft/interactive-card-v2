@@ -4,7 +4,6 @@
     "name": "BitCamp",
     "frontImage": "/public/Bitcamp/bitcamp-front.svg",
     "backImage": "/public/Bitcamp/bitcamp-back.svg",
-    "colors": ["#242840", "#000000", "#AA1D50"],
     "cards-images": {
       "blue-front": "/public/Bitcamp/bitcamp-front.svg",
       "blue-back": "/public/Bitcamp/bitcamp-back.svg",
@@ -22,7 +21,6 @@
     "name": "King Tamar",
     "frontImage": "/public/KingTamar/tamar-front-green.svg",
     "backImage": "/public/KingTamar/tamar-back-green.svg",
-    "colors": ["#253E31", "#0EA6B0", "#1C1C1C"],
     "cards-images": {
       "green-front": "/public/KingTamar/tamar-front-green.svg",
       "green-back": "/public/KingTamar/tamar-back-green.svg",
@@ -40,7 +38,6 @@
     "name": "Coliseum",
     "frontImage": "/public/Coliseum/coliseum-front-orange1.svg",
     "backImage": "/public/Coliseum/coliseum-back-orange1.svg",
-    "colors": ["#6D3208", "#E16C00", "#BF7F4D"],
     "cards-images": {
       "orange1-front": "/public/Coliseum/coliseum-front-orange1.svg",
       "orange1-back": "/public/Coliseum/coliseum-back-orange1.svg",
@@ -53,5 +50,3 @@
     }
   }
 ]
-
-
