@@ -1,11 +1,11 @@
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useContext, useState } from "react";
 import { motion, Variants } from "framer-motion";
 import "animate.css";
 import { FaAngleUp } from "react-icons/fa";
-
+import { FormContext } from "../../../context/FormContext";
 function SelectCards() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [choosedCard, setChoosedCard] = useState<string>("BitCamp");
+  const { choosedCard, setChoosedCard } = useContext(FormContext);
 
   const itemVariants: Variants = {
     open: {
@@ -24,6 +24,7 @@ function SelectCards() {
 
   const caughtCardName = (e: MouseEvent<HTMLDivElement>) => {
     setChoosedCard((e.target as HTMLDivElement).innerHTML);
+    setIsOpen(false);
   };
 
   return (

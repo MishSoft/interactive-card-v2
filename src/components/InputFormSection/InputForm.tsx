@@ -27,13 +27,13 @@ function InputForm() {
 
       <div className="number-input-container">
         <div className="number-input">
-          <label htmlFor="">cardholder name</label>
+          <label htmlFor="">cardholder number</label>
           <input
             onChange={handleInputData}
             value={inputData.cardnumber}
             type="text"
             name="cardnumber"
-            placeholder="e.g Jane Appleseed"
+            placeholder="e.g 1234 5678 9000"
           />
           <div className="error-message">
             <span>Can't be blank</span>
