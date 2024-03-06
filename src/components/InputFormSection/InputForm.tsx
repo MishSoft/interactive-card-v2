@@ -5,7 +5,7 @@ import { FormContext } from "../../context/FormContext";
 function InputForm() {
   // const context = useContext(FormContext);
 
-  const { inputData, handleInputData } = useContext(FormContext);
+  const { inputData, handleInputData, setIsFlipped } = useContext(FormContext);
 
   return (
     <form id="inputs-form">
@@ -31,6 +31,7 @@ function InputForm() {
           <input
             onChange={handleInputData}
             value={inputData.cardnumber}
+            maxLength={19}
             type="text"
             name="cardnumber"
             placeholder="e.g 1234 5678 9000"
@@ -51,6 +52,7 @@ function InputForm() {
               type="text"
               name="mm"
               placeholder="MM"
+              maxLength={2}
             />
             <input
               onChange={handleInputData}
@@ -58,6 +60,7 @@ function InputForm() {
               type="text"
               name="yy"
               placeholder="YY"
+              maxLength={2}
             />
           </div>
           <div className="error-message">
@@ -69,10 +72,13 @@ function InputForm() {
             <label htmlFor="">cvc</label>
             <input
               onChange={handleInputData}
+              onFocus={() => setIsFlipped(true)}
+              onBlur={() => setIsFlipped(false)}
               value={inputData.cvc}
               type="text"
               name="cvc"
               placeholder="e.g 123"
+              maxLength={3}
             />
           </div>
           <div className="error-message">

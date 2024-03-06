@@ -55,7 +55,9 @@ body {
 .card-border {
   position: relative;
   transform-style: preserve-3d;
-  transition: all 0.5 ease;
+  transition: transform 0.5s;
+  transform: rotateY(180deg);
+  perspective: 1000px;
   margin-bottom: 10px;
   width: 450px;
   height: 250px;
@@ -87,6 +89,10 @@ body {
 .card-image-details > h2 {
   padding-left: 15px;
 }
+
+/* .front {
+  transform: rotateY(-180deg);
+} */
 
 .back {
   transform: rotateY(180deg);

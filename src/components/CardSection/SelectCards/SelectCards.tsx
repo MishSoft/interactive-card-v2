@@ -23,7 +23,8 @@ function SelectCards() {
   };
 
   const caughtCardName = (e: MouseEvent<HTMLDivElement>) => {
-    setChoosedCard((e.target as HTMLDivElement).innerHTML);
+    const cardName = (e.target as HTMLDivElement).innerHTML;
+    setChoosedCard(cardName.trim());
     setIsOpen(false);
   };
 

@@ -1,13 +1,21 @@
 // import React from 'react'
 // import testImage from "/public/Bitcamp/bitcamp-front.svg";
-import testback from "/public/Bitcamp/bitcamp-back.svg";
+// import testback from "/public/Bitcamp/bitcamp-back.svg";
 import { FormContext } from "../../../context/FormContext";
 import { useContext, useEffect } from "react";
 
 function CardImage() {
-  const { inputData, choosedCard, caughtData } = useContext(FormContext);
-  const { selectedCard, setSelectedCard } = useContext(FormContext);
+  const {
+    inputData,
+    choosedCard,
+    caughtData,
+    selectedCard,
+    setSelectedCard,
+    selectedColor,
+    isFlipped,
+  } = useContext(FormContext);
 
+  // console.log(selectedColor);
   useEffect(() => {
     if (caughtData && choosedCard) {
       const findName = caughtData.find(
@@ -19,26 +27,45 @@ function CardImage() {
 
   // console.log(selectedCard);
 
+  const Styles = {
+    transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+  };
+
   return (
-    <div className="card-border">
+    <div className="card-border" style={{ ...Styles }}>
       {selectedCard && (
-        <div
-          className="front"
-          style={{ backgroundImage: `url(${selectedCard.frontImage})` }}
-        >
-          <h2>Card Name</h2>
-          <div className="card-image-details">
-            <h2>{inputData.cardnumber || "0000 0000 0000 0000"}</h2>
-            <div className="number-date">
-              <h2>{inputData.cardname || "Name Lastname"}</h2>
-              <h2>12/24</h2>
+        <>
+          <div
+            className="front"
+            style={{
+              backgroundImage: `url(${
+                selectedColor ? selectedColor : selectedCard.frontImage
+              })`,
+            }}
+          >
+            <h2>Interactive Card</h2>
+            <div className="card-image-details">
+              <h2>{inputData.cardnumber || "0000 0000 0000 0000"}</h2>
+              <div className="number-date">
+                <h2 style={{ textTransform: "uppercase" }}>
+                  {inputData.cardname || "Name Lastname"}
+                </h2>
+                <h2>{inputData.mm + "/" + inputData.yy || "12/24"}</h2>
+              </div>
             </div>
           </div>
-        </div>
+          <div
+            className="back"
+            style={{
+              backgroundImage: `url(${
+                selectedColor ? selectedColor : selectedCard.backImage
+              })`,
+            }}
+          >
+            <h2>{inputData.cvc || "123"}</h2>
+          </div>
+        </>
       )}
-      <div className="back" style={{ backgroundImage: `url(${testback})` }}>
-        <h2>558</h2>
-      </div>
     </div>
   );
 }
