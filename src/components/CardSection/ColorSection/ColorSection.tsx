@@ -17,7 +17,7 @@ function ColorSection() {
             name: string;
             cardImages: { front: string | undefined }[];
           }) => {
-            if (item.name === choosedCard && item.cardImages) {
+            if (item.name === choosedCard) {
               return item.cardImages.map(
                 (
                   image: { front: string | undefined },

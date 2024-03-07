@@ -15,7 +15,7 @@ function CardImage() {
     isFlipped,
   } = useContext(FormContext);
 
-  // console.log(selectedColor);
+  // console.log(selectedCard.cardImages);
   useEffect(() => {
     if (caughtData && choosedCard) {
       const findName = caughtData.find(
