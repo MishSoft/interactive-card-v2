@@ -2,11 +2,25 @@ import { Key, useContext } from "react";
 import { FormContext } from "../../../context/FormContext";
 
 function ColorSection() {
-  const { caughtData, choosedCard, setSelectedColor } = useContext(FormContext);
+  const {
+    caughtData,
+    choosedCard,
+    setSelectedColor,
+    setSelectedCardBack,
+    // selectedCardBack,
+    selectedCard,
+  } = useContext(FormContext);
 
   const handleColorCard = (e: any) => {
+    const key = e.target.src;
     setSelectedColor(e.target.src);
-    // console.log(caughtData[0].cardImages);
+    if (selectedCard) {
+      const findBackImage = caughtData.find((item: any, id: number) =>
+        console.log(item.cardImages[id])
+      );
+      setSelectedCardBack(findBackImage);
+      console.log(key);
+    }
   };
 
   return (

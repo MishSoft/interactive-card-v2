@@ -13,9 +13,11 @@ function CardImage() {
     setSelectedCard,
     selectedColor,
     isFlipped,
+    selectedCardBack,
   } = useContext(FormContext);
 
-  // console.log(selectedCard.cardImages);
+  // console.log(selectedCard);
+  console.log(selectedCardBack);
   useEffect(() => {
     if (caughtData && choosedCard) {
       const findName = caughtData.find(
@@ -24,8 +26,6 @@ function CardImage() {
       setSelectedCard(findName);
     }
   }, [caughtData, choosedCard, setSelectedCard]);
-
-  // console.log(selectedCard);
 
   const Styles = {
     transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
@@ -58,7 +58,7 @@ function CardImage() {
             className="back"
             style={{
               backgroundImage: `url(${
-                selectedColor ? selectedColor : selectedCard.backImage
+                selectedColor ? selectedCardBack : selectedCard.backImage
               })`,
             }}
           >

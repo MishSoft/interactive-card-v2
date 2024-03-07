@@ -13,6 +13,8 @@ interface FormContextProps {
   setSelectedColor: (color: string | null) => void;
   isFlipped: boolean;
   setIsFlipped: () => void;
+  selectedCardBack: string | null;
+  setSelectedCardBack: (item: string | null) => void;
 }
 
 interface InitialStateProps {
@@ -47,6 +49,8 @@ const FormContext = React.createContext<FormContextProps>({
   setSelectedColor: () => {},
   isFlipped: false,
   setIsFlipped: () => {},
+  selectedCardBack: null,
+  setSelectedCardBack: () => {},
 });
 
 const FormProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -58,6 +62,7 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
   const [selectedCard, setSelectedCard] = useState<string | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
+  const [selectedCardBack, setSelectedCardBack] = useState<string>("");
   useEffect(() => {
     const data = getData();
     setCaughtData(data);
@@ -92,6 +97,8 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
         setSelectedColor,
         isFlipped,
         setIsFlipped,
+        setSelectedCardBack,
+        selectedCardBack,
       }}
     >
       {children}
