@@ -5,9 +5,17 @@ import { FormContext } from "../../context/FormContext";
 function InputForm() {
   // const context = useContext(FormContext);
 
-  const { inputData, handleInputData, setIsFlipped, errors, isConfirm } =
-    useContext(FormContext);
+  const {
+    inputData,
+    handleInputData,
+    setIsFlipped,
+    errors,
+    isConfirm,
+    setShopPopUp,
+  } = useContext(FormContext);
 
+
+  
   return (
     <form id="inputs-form">
       <div className="name-input-container">
@@ -88,7 +96,12 @@ function InputForm() {
           </div>
         </div>
       </div>
-      <button disabled={isConfirm} className="defaultbtn" type="submit">
+      <button
+        disabled={isConfirm}
+        onClick={() => setShopPopUp(true)}
+        className="defaultbtn"
+        type="submit"
+      >
         Confirm
       </button>
     </form>

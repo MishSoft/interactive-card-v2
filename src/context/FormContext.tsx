@@ -15,6 +15,10 @@ interface FormContextProps {
   setIsFlipped: () => void;
   selectedCardBack: string | null;
   setSelectedCardBack: (item: string | null) => void;
+  isConfirm: boolean;
+  setIsConfirma: () => void;
+  showPopUp: boolean;
+  setShopPopUp: () => void;
 }
 
 interface InitialStateProps {
@@ -59,6 +63,10 @@ const FormContext = React.createContext<FormContextProps>({
   setIsFlipped: () => {},
   selectedCardBack: null,
   setSelectedCardBack: () => {},
+  isConfirm: true,
+  setIsConfirma: () => {},
+  showPopUp: false,
+  setShopPopUp: () => {},
 });
 
 const FormProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -78,7 +86,8 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
     yy: false,
     cvc: false,
   });
-  const [isConfirm, setIsConfirm] = useState<boolean>(false);
+  const [isConfirm, setIsConfirm] = useState<boolean>(true);
+  const [showPopUp, setShopPopUp] = useState<boolean>(false);
 
   useEffect(() => {
     const data = getData();
@@ -116,7 +125,7 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
       inputData.cvc !== "";
 
     if (!isAllFilled) {
-      return setIsConfirm(true);
+      setIsConfirm(true);
     } else {
       setIsConfirm(false);
     }
@@ -145,6 +154,9 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
         selectedCardBack,
         errors,
         isConfirm,
+        setIsConfirm,
+        showPopUp,
+        setShopPopUp,
       }}
     >
       {children}
