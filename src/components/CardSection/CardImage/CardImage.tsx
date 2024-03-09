@@ -16,14 +16,11 @@ function CardImage() {
     selectedCardBack,
   } = useContext(FormContext);
 
-  // console.log(selectedCard);
-
   useEffect(() => {
     if (caughtData && choosedCard) {
       const findName = caughtData.find(
         (item: any) => item.name === choosedCard
       );
-      console.log(findName);
       setSelectedCard(findName || selectedCard);
     }
   }, [caughtData, choosedCard, selectedCard, setSelectedCard]);
@@ -31,7 +28,6 @@ function CardImage() {
   const Styles = {
     transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
   };
-  console.log(selectedCard);
   return (
     <div className="card-border" style={{ ...Styles }}>
       {selectedCard && (
@@ -51,7 +47,7 @@ function CardImage() {
                 <h2 style={{ textTransform: "uppercase" }}>
                   {inputData.cardname || "Name Lastname"}
                 </h2>
-                <h2>{inputData.mm + "/" + inputData.yy || "12/24"}</h2>
+                <h2>{inputData.mm + "/" + inputData.yy}</h2>
               </div>
             </div>
           </div>

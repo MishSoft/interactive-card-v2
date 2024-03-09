@@ -6,7 +6,7 @@ interface FormContextProps {
   handleInputData: React.Dispatch<React.SetStateAction<InitialStateProps>>;
   caughgtData: object | null;
   choosedCard: string;
-  setChoosedCard: (card: string) => void;
+  setChoosedCard: (card: string | object) => void;
   selectedCard: string | null;
   setSelectedCard: (card: string | null) => void;
   selectedColor: string | null;
@@ -31,6 +31,14 @@ const InitialState: InitialStateProps = {
   mm: "",
   yy: "",
   cvc: "",
+};
+
+type ErrorsState = {
+  cardname: boolean;
+  cardnumber: boolean;
+  mm: boolean;
+  yy: boolean;
+  cvc: boolean;
 };
 
 const getData = () => {
@@ -63,6 +71,15 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [selectedCardBack, setSelectedCardBack] = useState<string>("");
+  const [errors, setErrors] = useState<ErrorsState>({
+    cardname: false,
+    cardnumber: false,
+    mm: false,
+    yy: false,
+    cvc: false,
+  });
+  const [isConfirm, setIsConfirm] = useState<boolean>(false);
+
   useEffect(() => {
     const data = getData();
     setCaughtData(data);
@@ -75,6 +92,33 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
       const cardNumberDigits = value.replace(/\D/g, "");
       const groups = cardNumberDigits.match(/.{1,4}/g);
       formattedValue = groups ? groups.join(" ") : "";
+    }
+
+    if (name === "cardname") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardname: /\d/.test(value),
+      }));
+    }
+
+    if (name === "mm") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        mm: Number(value) > 12 || Number(value) === 0,
+      }));
+    }
+
+    const isAllFilled =
+      inputData.cardname !== "" &&
+      inputData.cardnumber !== "" &&
+      inputData.mm !== "" &&
+      inputData.yy !== "" &&
+      inputData.cvc !== "";
+
+    if (!isAllFilled) {
+      return setIsConfirm(true);
+    } else {
+      setIsConfirm(false);
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -99,6 +143,8 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
         setIsFlipped,
         setSelectedCardBack,
         selectedCardBack,
+        errors,
+        isConfirm,
       }}
     >
       {children}

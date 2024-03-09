@@ -5,7 +5,8 @@ import { FormContext } from "../../context/FormContext";
 function InputForm() {
   // const context = useContext(FormContext);
 
-  const { inputData, handleInputData, setIsFlipped } = useContext(FormContext);
+  const { inputData, handleInputData, setIsFlipped, errors, isConfirm } =
+    useContext(FormContext);
 
   return (
     <form id="inputs-form">
@@ -20,7 +21,7 @@ function InputForm() {
             placeholder="e.g Jane Appleseed"
           />
           <div className="error-message">
-            <span>Can't be blank</span>
+            {errors.cardname && <span>Only letters</span>}
           </div>
         </div>
       </div>
@@ -37,7 +38,7 @@ function InputForm() {
             placeholder="e.g 1234 5678 9000"
           />
           <div className="error-message">
-            <span>Can't be blank</span>
+            {errors.cardnumber && <span>Can't be blank</span>}
           </div>
         </div>
       </div>
@@ -64,7 +65,8 @@ function InputForm() {
             />
           </div>
           <div className="error-message">
-            <span>Can't be blank</span>
+            {(errors.mm && <span>Can't be blank</span>) ||
+              (errors.yy && <span>Can't be blank</span>)}
           </div>
         </div>
         <div className="cvc-input container">
@@ -82,11 +84,11 @@ function InputForm() {
             />
           </div>
           <div className="error-message">
-            <span>Can't be blank</span>
+            {errors.cvc && <span>Can't be blank</span>}
           </div>
         </div>
       </div>
-      <button disabled className="defaultbtn" type="submit">
+      <button disabled={isConfirm} className="defaultbtn" type="submit">
         Confirm
       </button>
     </form>
