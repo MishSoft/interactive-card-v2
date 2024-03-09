@@ -17,20 +17,21 @@ function CardImage() {
   } = useContext(FormContext);
 
   // console.log(selectedCard);
-  console.log(selectedCardBack);
+
   useEffect(() => {
     if (caughtData && choosedCard) {
       const findName = caughtData.find(
         (item: any) => item.name === choosedCard
       );
-      setSelectedCard(findName);
+      console.log(findName);
+      setSelectedCard(findName || selectedCard);
     }
-  }, [caughtData, choosedCard, setSelectedCard]);
+  }, [caughtData, choosedCard, selectedCard, setSelectedCard]);
 
   const Styles = {
     transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
   };
-
+  console.log(selectedCard);
   return (
     <div className="card-border" style={{ ...Styles }}>
       {selectedCard && (

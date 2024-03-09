@@ -24,7 +24,8 @@ function SelectCards() {
 
   const caughtCardName = (e: MouseEvent<HTMLDivElement>) => {
     const cardName = (e.target as HTMLDivElement).innerHTML;
-    setChoosedCard(cardName.trim());
+    // console.log(cardName.trim());
+    setChoosedCard(cardName);
     setIsOpen(false);
   };
 

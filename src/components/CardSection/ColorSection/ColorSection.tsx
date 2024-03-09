@@ -12,14 +12,16 @@ function ColorSection() {
   } = useContext(FormContext);
 
   const handleColorCard = (e: any) => {
-    const key = e.target.src;
-    setSelectedColor(e.target.src);
+    const key = e.target.src.split("73").pop() || "";
+    setSelectedColor(key);
+
+    // console.log(key);
     if (selectedCard) {
-      const findBackImage = caughtData.find((item: any, id: number) =>
-        console.log(item.cardImages[id])
+      const findBackImage = selectedCard.cardImages.find((image: any) =>
+        image.front.includes(key)
       );
-      setSelectedCardBack(findBackImage);
-      console.log(key);
+
+      setSelectedCardBack(findBackImage?.back);
     }
   };
 
