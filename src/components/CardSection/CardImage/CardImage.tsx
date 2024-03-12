@@ -1,8 +1,11 @@
-// import React from 'react'
-// import testImage from "/public/Bitcamp/bitcamp-front.svg";
-// import testback from "/public/Bitcamp/bitcamp-back.svg";
 import { FormContext } from "../../../context/FormContext";
 import { useContext, useEffect } from "react";
+
+interface CardDataItem {
+  name: string;
+  frontImage: string;
+  backImage: string;
+}
 
 function CardImage() {
   const {
@@ -18,8 +21,9 @@ function CardImage() {
 
   useEffect(() => {
     if (caughtData && choosedCard) {
-      const findName = caughtData.find(
-        (item: any) => item.name === choosedCard
+      const data = caughtData as CardDataItem[];
+      const findName = data.find(
+        (item: CardDataItem) => item.name === choosedCard
       );
       setSelectedCard(findName || selectedCard);
     }
@@ -28,9 +32,10 @@ function CardImage() {
   const Styles = {
     transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
   };
+
   return (
     <div className="card-border" style={{ ...Styles }}>
-      {selectedCard && (
+      {selectedCard && typeof selectedCard !== "string" && (
         <>
           <div
             className="front"

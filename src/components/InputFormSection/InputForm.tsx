@@ -11,11 +11,9 @@ function InputForm() {
     setIsFlipped,
     errors,
     isConfirm,
-    setShopPopUp,
+    // setShopPopUp,
   } = useContext(FormContext);
 
-
-  
   return (
     <form id="inputs-form">
       <div className="name-input-container">
@@ -98,7 +96,7 @@ function InputForm() {
       </div>
       <button
         disabled={isConfirm}
-        onClick={() => setShopPopUp(true)}
+        // onClick={() => setShopPopUp(true)}
         className="defaultbtn"
         type="submit"
       >

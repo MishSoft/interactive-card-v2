@@ -3,22 +3,26 @@ import CardData from "../Data/CardData.json";
 
 interface FormContextProps {
   inputData: InitialStateProps;
-  handleInputData: React.Dispatch<React.SetStateAction<InitialStateProps>>;
-  caughgtData: object | null;
+  handleInputData: (e: ChangeEvent<HTMLInputElement>) => void;
+  caughtData: CardDataItem[] | null;
   choosedCard: string;
-  setChoosedCard: (card: string | object) => void;
-  selectedCard: string | null;
-  setSelectedCard: (card: string | null) => void;
+  setChoosedCard: React.Dispatch<React.SetStateAction<string>>;
+  selectedCard: CardDataItem | string | null;
+  setSelectedCard: React.Dispatch<
+    React.SetStateAction<CardDataItem | string | null>
+  >;
   selectedColor: string | null;
-  setSelectedColor: (color: string | null) => void;
+  setSelectedColor: React.Dispatch<React.SetStateAction<string | null>>;
   isFlipped: boolean;
-  setIsFlipped: () => void;
+  setIsFlipped: React.Dispatch<React.SetStateAction<boolean>>;
   selectedCardBack: string | null;
-  setSelectedCardBack: (item: string | null) => void;
+  setSelectedCardBack: React.Dispatch<React.SetStateAction<string>>;
   isConfirm: boolean;
-  setIsConfirma: () => void;
+  setIsConfirm: React.Dispatch<React.SetStateAction<boolean>>;
   showPopUp: boolean;
-  setShopPopUp: () => void;
+  setShopPopUp: React.Dispatch<React.SetStateAction<boolean>>;
+  setErrors: React.Dispatch<React.SetStateAction<ErrorsState>>;
+  errors: ErrorsState;
 }
 
 interface InitialStateProps {
@@ -45,6 +49,12 @@ type ErrorsState = {
   cvc: boolean;
 };
 
+interface CardDataItem {
+  name: string;
+  frontImage: string;
+  backImage: string;
+}
+
 const getData = () => {
   return CardData;
 };
@@ -52,7 +62,7 @@ const getData = () => {
 const FormContext = React.createContext<FormContextProps>({
   inputData: InitialState,
   handleInputData: () => {},
-  caughgtData: null,
+  caughtData: null,
   choosedCard: "",
   setChoosedCard: () => {},
   selectedCard: null,
@@ -64,18 +74,28 @@ const FormContext = React.createContext<FormContextProps>({
   selectedCardBack: null,
   setSelectedCardBack: () => {},
   isConfirm: true,
-  setIsConfirma: () => {},
+  setIsConfirm: () => {},
   showPopUp: false,
   setShopPopUp: () => {},
+  setErrors: () => {},
+  errors: {
+    cardname: false,
+    cardnumber: false,
+    mm: false,
+    yy: false,
+    cvc: false,
+  },
 });
 
 const FormProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [inputData, setInputData] = useState<InitialStateProps>(InitialState);
-  const [caughtData, setCaughtData] = useState<object | null>(null);
+  const [caughtData, setCaughtData] = useState<CardDataItem[] | null>(null);
   const [choosedCard, setChoosedCard] = useState<string>("BitCamp");
-  const [selectedCard, setSelectedCard] = useState<string | null>(null);
+  const [selectedCard, setSelectedCard] = useState<
+    CardDataItem | string | null
+  >(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [selectedCardBack, setSelectedCardBack] = useState<string>("");
@@ -130,12 +150,12 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
       setIsConfirm(false);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    setInputData((prevData: any) => ({
+    setInputData((prevData) => ({
       ...prevData,
       [name]: formattedValue,
     }));
   };
+
   return (
     <FormContext.Provider
       value={{
@@ -150,9 +170,10 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
         setSelectedColor,
         isFlipped,
         setIsFlipped,
-        setSelectedCardBack,
         selectedCardBack,
+        setSelectedCardBack,
         errors,
+        setErrors,
         isConfirm,
         setIsConfirm,
         showPopUp,
@@ -163,4 +184,5 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
     </FormContext.Provider>
   );
 };
+
 export { FormContext, FormProvider };
