@@ -130,19 +130,14 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
       }));
     }
 
-    if (name === "mm") {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        mm: Number(value) > 12 || Number(value) === 0,
-      }));
-    }
-
     const isAllFilled =
       inputData.cardname !== "" &&
       inputData.cardnumber !== "" &&
+      inputData.cardnumber.length < 21 &&
       inputData.mm !== "" &&
       inputData.yy !== "" &&
-      inputData.cvc !== "";
+      inputData.cvc !== "" &&
+      inputData.cvc.length === 3;
 
     if (!isAllFilled) {
       setIsConfirm(true);

@@ -26,6 +26,7 @@ function CardImage() {
         (item: CardDataItem) => item.name === choosedCard
       );
       setSelectedCard(findName || selectedCard);
+      console.log(selectedCard);
     }
   }, [caughtData, choosedCard, selectedCard, setSelectedCard]);
 

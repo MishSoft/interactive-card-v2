@@ -7,7 +7,6 @@ function ColorSection() {
     choosedCard,
     setSelectedColor,
     setSelectedCardBack,
-    // selectedCardBack,
     selectedCard,
   } = useContext(FormContext);
 
