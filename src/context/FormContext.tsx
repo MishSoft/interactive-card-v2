@@ -123,79 +123,23 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
       formattedValue = groups ? groups.join(" ") : "";
     }
 
-    if (name === "cardname" && value == "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        cardname: true,
-      }));
-    } else if (name === "cardname" && value !== "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        cardname: false,
-      }));
-    }
-
-    if (name === "cardnumber" && value == "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        cardnumber: true,
-      }));
-    } else if (name === "cardnumber" && value !== "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        cardnumber: false,
-      }));
-    }
-
-    if (name === "mm" && value == "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        mm: true,
-      }));
-    } else if (name === "mm" && value !== "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        mm: false,
-      }));
-    }
-
-    if (name === "yy" && value == "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        yy: true,
-      }));
-    } else if (name === "yy" && value !== "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        yy: false,
-      }));
-    }
-
-    if (name === "cvc" && value == "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        cvc: true,
-      }));
-    } else if (name === "cvc" && value !== "") {
-      setErrors((prevError) => ({
-        ...prevError,
-        cvc: false,
-      }));
-    }
-
-    if (
-      Object.values(errors).includes(true) ||
-      Object.values(inputData).every((value) => value !== "")
-    ) {
-      setIsConfirm(true);
-      console.log(isConfirm);
-    }
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: value === "",
+    }));
 
     setInputData((prevData) => ({
       ...prevData,
       [name]: formattedValue,
     }));
   };
+
+  useEffect(() => {
+    setIsConfirm(
+      !Object.values(errors).some((error) => error) &&
+        Object.values(inputData).every((value) => value !== "")
+    );
+  }, [errors, inputData]);
 
   return (
     <FormContext.Provider
