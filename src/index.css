@@ -29,8 +29,6 @@ body {
   gap: 10px;
 }
 
-
-
 .card-colors img {
   width: 80px;
   transition: all 0.2s ease;
@@ -80,7 +78,6 @@ body {
 .card-image-details > h2 {
   padding-left: 15px;
 }
-
 
 .back {
   transform: rotateY(180deg);
@@ -161,9 +158,27 @@ body {
 
 .name-input,
 .number-input {
+  background-color: white;
+  color: black;
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.name-input-error,
+.number-input-error,
+.cvc-error,
+.date-error-input-container {
+  color: tomato;
+}
+
+.name-input-error input,
+.number-input-error input,
+.cvc-error input,
+.yy-error,
+.mm-error {
+  border: 1px solid tomato;
+  background-color: rgba(255, 99, 71, 0.61);
 }
 
 .name-input label,

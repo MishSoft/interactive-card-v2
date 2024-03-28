@@ -106,7 +106,7 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
     yy: false,
     cvc: false,
   });
-  const [isConfirm, setIsConfirm] = useState<boolean>(true);
+  const [isConfirm, setIsConfirm] = useState<boolean>(false);
   const [showPopUp, setShopPopUp] = useState<boolean>(false);
 
   useEffect(() => {
@@ -123,26 +123,72 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
       formattedValue = groups ? groups.join(" ") : "";
     }
 
-    if (name === "cardname") {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        cardname: /\d/.test(value),
+    if (name === "cardname" && value == "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        cardname: true,
+      }));
+    } else if (name === "cardname" && value !== "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        cardname: false,
       }));
     }
 
-    const isAllFilled =
-      inputData.cardname !== "" &&
-      inputData.cardnumber !== "" &&
-      inputData.cardnumber.length < 21 &&
-      inputData.mm !== "" &&
-      inputData.yy !== "" &&
-      inputData.cvc !== "" &&
-      inputData.cvc.length === 3;
+    if (name === "cardnumber" && value == "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        cardnumber: true,
+      }));
+    } else if (name === "cardnumber" && value !== "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        cardnumber: false,
+      }));
+    }
 
-    if (!isAllFilled) {
+    if (name === "mm" && value == "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        mm: true,
+      }));
+    } else if (name === "mm" && value !== "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        mm: false,
+      }));
+    }
+
+    if (name === "yy" && value == "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        yy: true,
+      }));
+    } else if (name === "yy" && value !== "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        yy: false,
+      }));
+    }
+
+    if (name === "cvc" && value == "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        cvc: true,
+      }));
+    } else if (name === "cvc" && value !== "") {
+      setErrors((prevError) => ({
+        ...prevError,
+        cvc: false,
+      }));
+    }
+
+    if (
+      Object.values(errors).includes(true) ||
+      Object.values(inputData).every((value) => value !== "")
+    ) {
       setIsConfirm(true);
-    } else {
-      setIsConfirm(false);
+      console.log(isConfirm);
     }
 
     setInputData((prevData) => ({

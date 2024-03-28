@@ -3,8 +3,6 @@ import { useContext } from "react";
 import { FormContext } from "../../context/FormContext";
 
 function InputForm() {
-  // const context = useContext(FormContext);
-
   const {
     inputData,
     handleInputData,
@@ -17,7 +15,13 @@ function InputForm() {
   return (
     <form id="inputs-form">
       <div className="name-input-container">
-        <div className="name-input">
+        <div
+          className={`name-input ${
+            errors.cardname || Number(inputData.cardname)
+              ? "name-input-error"
+              : ""
+          }`}
+        >
           <label htmlFor="">cardholder name</label>
           <input
             onChange={handleInputData}
@@ -27,13 +31,24 @@ function InputForm() {
             placeholder="e.g Jane Appleseed"
           />
           <div className="error-message">
-            {errors.cardname && <span>Only letters</span>}
+            <>
+              {errors.cardname ? <span>Can't be blank</span> : ""}
+              {Number(inputData.cardname) ? (
+                <span>Must contain only letters.</span>
+              ) : (
+                ""
+              )}
+            </>
           </div>
         </div>
       </div>
 
       <div className="number-input-container">
-        <div className="number-input">
+        <div
+          className={`number-input ${
+            errors.cardnumber ? "number-input-error" : ""
+          }`}
+        >
           <label htmlFor="">cardholder number</label>
           <input
             onChange={handleInputData}
@@ -50,10 +65,15 @@ function InputForm() {
       </div>
 
       <div className="detail-inputs-container">
-        <div className="date-input-container">
+        <div
+          className={`date-input-container ${
+            errors.mm || errors.yy ? "date-error-input-container" : ""
+          }`}
+        >
           <label htmlFor="">exp. date(mm/yy)</label>
           <div className="date-inputs">
             <input
+              className={errors.mm ? "mm-error" : ""}
               onChange={handleInputData}
               value={inputData.mm}
               type="text"
@@ -62,6 +82,7 @@ function InputForm() {
               maxLength={2}
             />
             <input
+              className={errors.yy ? "yy-error" : ""}
               onChange={handleInputData}
               value={inputData.yy}
               type="text"
@@ -71,12 +92,11 @@ function InputForm() {
             />
           </div>
           <div className="error-message">
-            {(errors.mm && <span>Can't be blank</span>) ||
-              (errors.yy && <span>Can't be blank</span>)}
+            {errors.mm || errors.yy ? <span>Can't be blank</span> : ""}
           </div>
         </div>
         <div className="cvc-input container">
-          <div className="cvc-input">
+          <div className={`cvc-input ${errors.cvc ? "cvc-error" : ""}`}>
             <label htmlFor="">cvc</label>
             <input
               onChange={handleInputData}
@@ -95,7 +115,7 @@ function InputForm() {
         </div>
       </div>
       <button
-        disabled={isConfirm}
+        disabled={!isConfirm}
         // onClick={() => setShopPopUp(true)}
         className="defaultbtn"
         type="submit"
