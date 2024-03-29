@@ -9,11 +9,16 @@ function InputForm() {
     setIsFlipped,
     errors,
     isConfirm,
-    // setShopPopUp,
+    setShopPopUp,
   } = useContext(FormContext);
 
+  const setCaughtPopUp = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShopPopUp(true);
+  };
+
   return (
-    <form id="inputs-form">
+    <form onSubmit={setCaughtPopUp} id="inputs-form">
       <div className="name-input-container">
         <div
           className={`name-input ${
@@ -114,12 +119,7 @@ function InputForm() {
           </div>
         </div>
       </div>
-      <button
-        disabled={!isConfirm}
-        // onClick={() => setShopPopUp(true)}
-        className="defaultbtn"
-        type="submit"
-      >
+      <button disabled={!isConfirm} className="defaultbtn" type="submit">
         Confirm
       </button>
     </form>

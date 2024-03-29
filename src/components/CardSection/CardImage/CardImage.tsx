@@ -17,6 +17,10 @@ function CardImage() {
     selectedColor,
     isFlipped,
     selectedCardBack,
+    cardRef,
+    frontRef,
+    backRef,
+    readyForDownload,
   } = useContext(FormContext);
 
   useEffect(() => {
@@ -26,7 +30,6 @@ function CardImage() {
         (item: CardDataItem) => item.name === choosedCard
       );
       setSelectedCard(findName || selectedCard);
-      console.log(selectedCard);
     }
   }, [caughtData, choosedCard, selectedCard, setSelectedCard]);
 
@@ -35,10 +38,11 @@ function CardImage() {
   };
 
   return (
-    <div className="card-border" style={{ ...Styles }}>
+    <div className="card-border" style={{ ...Styles }} ref={cardRef}>
       {selectedCard && typeof selectedCard !== "string" && (
         <>
           <div
+            ref={frontRef}
             className="front"
             style={{
               backgroundImage: `url(${
@@ -58,7 +62,8 @@ function CardImage() {
             </div>
           </div>
           <div
-            className="back"
+            ref={backRef}
+            className={readyForDownload ? "readyForDownload" : "back"}
             style={{
               backgroundImage: `url(${
                 selectedColor ? selectedCardBack : selectedCard.backImage

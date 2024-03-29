@@ -1,5 +1,8 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useRef, useState } from "react";
 import CardData from "../Data/CardData.json";
+import { saveAs } from "file-saver";
+import { toBlob } from "html-to-image";
+import JSZip from "jszip";
 
 interface FormContextProps {
   inputData: InitialStateProps;
@@ -23,6 +26,12 @@ interface FormContextProps {
   setShopPopUp: React.Dispatch<React.SetStateAction<boolean>>;
   setErrors: React.Dispatch<React.SetStateAction<ErrorsState>>;
   errors: ErrorsState;
+  handleDownload: React.Dispatch<React.SetStateAction<string | null>>;
+  cardRef: React.RefObject<HTMLDivElement> | null;
+  backRef: React.RefObject<HTMLDivElement> | null;
+  frontRef: React.RefObject<HTMLDivElement> | null;
+  readyForDownload: boolean | null;
+  setReadyForDownload: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 interface InitialStateProps {
@@ -85,6 +94,12 @@ const FormContext = React.createContext<FormContextProps>({
     yy: false,
     cvc: false,
   },
+  handleDownload: () => {},
+  cardRef: null,
+  backRef: null,
+  frontRef: null,
+  readyForDownload: false,
+  setReadyForDownload: () => {},
 });
 
 const FormProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -108,6 +123,50 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
   });
   const [isConfirm, setIsConfirm] = useState<boolean>(false);
   const [showPopUp, setShopPopUp] = useState<boolean>(false);
+  const [readyForDownload, setReadyForDownload] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const frontRef = useRef<HTMLDivElement>(null);
+  const backRef = useRef<HTMLDivElement>(null);
+
+  const handleDownload = async () => {
+    console.log(cardRef);
+    if (!cardRef.current) {
+      console.error("cardRef.current is null.");
+      return;
+    }
+    setReadyForDownload(true);
+    const zip = new JSZip();
+    const frontImageName = "front.png";
+    const backImageName = "back.png";
+
+    const frontElement = cardRef.current.querySelector(
+      ".front"
+    ) as HTMLElement | null;
+    const backElement = cardRef.current.querySelector(
+      ".back"
+    ) as HTMLElement | null;
+
+    if (!frontElement || !backElement) {
+      console.error("Front or back element not found.");
+      return;
+    }
+
+    const [frontBlob, backBlob] = await Promise.all([
+      toBlob(frontElement),
+      toBlob(backElement),
+    ]);
+
+    if (!frontBlob || !backBlob) {
+      console.error("Failed to generate image blobs.");
+      return;
+    }
+
+    zip.file(frontImageName, frontBlob);
+    zip.file(backImageName, backBlob);
+
+    const content = await zip.generateAsync({ type: "blob" });
+    saveAs(content, "card_images.rar");
+  };
 
   useEffect(() => {
     const data = getData();
@@ -163,6 +222,12 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
         setIsConfirm,
         showPopUp,
         setShopPopUp,
+        handleDownload,
+        cardRef,
+        frontRef,
+        backRef,
+        readyForDownload,
+        setReadyForDownload,
       }}
     >
       {children}
