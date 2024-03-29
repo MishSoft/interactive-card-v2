@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, MouseEventHandler, useEffect, useRef, useState } from "react";
 import CardData from "../Data/CardData.json";
 import { saveAs } from "file-saver";
 import { toBlob } from "html-to-image";
@@ -26,12 +26,12 @@ interface FormContextProps {
   setShopPopUp: React.Dispatch<React.SetStateAction<boolean>>;
   setErrors: React.Dispatch<React.SetStateAction<ErrorsState>>;
   errors: ErrorsState;
-  handleDownload: React.Dispatch<React.SetStateAction<string | null>>;
+  handleDownload: MouseEventHandler<HTMLButtonElement>;
   cardRef: React.RefObject<HTMLDivElement> | null;
   backRef: React.RefObject<HTMLDivElement> | null;
   frontRef: React.RefObject<HTMLDivElement> | null;
   readyForDownload: boolean | null;
-  setReadyForDownload: React.Dispatch<React.SetStateAction<boolean | null>>;
+  setReadyForDownload: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface InitialStateProps {

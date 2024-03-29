@@ -1,5 +1,5 @@
 import { FormContext } from "../../../context/FormContext";
-import { useContext, useEffect } from "react";
+import { CSSProperties, useContext, useEffect, useState } from "react";
 
 interface CardDataItem {
   name: string;
@@ -22,7 +22,9 @@ function CardImage() {
     backRef,
     readyForDownload,
   } = useContext(FormContext);
-
+  const [backTranform, setBackTransform] = useState<CSSProperties>({
+    transform: "rotateY(180deg)",
+  });
   useEffect(() => {
     if (caughtData && choosedCard) {
       const data = caughtData as CardDataItem[];
@@ -36,6 +38,13 @@ function CardImage() {
   const Styles = {
     transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
   };
+
+  useEffect(() => {
+    setBackTransform((prevTrans) => ({
+      ...prevTrans,
+      transform: readyForDownload ? "rotateY(0deg)" : "rotateY(180deg)",
+    }));
+  }, [readyForDownload]);
 
   return (
     <div className="card-border" style={{ ...Styles }} ref={cardRef}>
@@ -63,8 +72,9 @@ function CardImage() {
           </div>
           <div
             ref={backRef}
-            className={readyForDownload ? "readyForDownload" : "back"}
+            className="back"
             style={{
+              transform: `${backTranform.transform}`,
               backgroundImage: `url(${
                 selectedColor ? selectedCardBack : selectedCard.backImage
               })`,

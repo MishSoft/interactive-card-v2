@@ -5,7 +5,7 @@ import { useContext } from "react";
 // import htmlToImage from "html-to-image";
 
 function ResultPopUp() {
-  const { handleDownload, setReadyForDownload } = useContext(FormContext);
+  const { handleDownload } = useContext(FormContext);
 
   return (
     <motion.div
@@ -21,7 +21,6 @@ function ResultPopUp() {
           delay: 0.5,
           ease: [0, 0.71, 0.2, 1.01],
         }}
-        
         className="popup"
       >
         <svg
