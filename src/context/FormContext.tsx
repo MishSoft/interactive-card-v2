@@ -1,8 +1,15 @@
-import React, { ChangeEvent, MouseEventHandler, useEffect, useRef, useState } from "react";
+import React, {
+  ChangeEvent,
+  MouseEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import CardData from "../Data/CardData.json";
 import { saveAs } from "file-saver";
 import { toBlob } from "html-to-image";
 import JSZip from "jszip";
+// import { isString } from "puppeteer";
 
 interface FormContextProps {
   inputData: InitialStateProps;
@@ -32,6 +39,7 @@ interface FormContextProps {
   frontRef: React.RefObject<HTMLDivElement> | null;
   readyForDownload: boolean | null;
   setReadyForDownload: React.Dispatch<React.SetStateAction<boolean>>;
+  errorMessage: string;
 }
 
 interface InitialStateProps {
@@ -100,6 +108,7 @@ const FormContext = React.createContext<FormContextProps>({
   frontRef: null,
   readyForDownload: false,
   setReadyForDownload: () => {},
+  errorMessage: "",
 });
 
 const FormProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -124,6 +133,7 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
   const [isConfirm, setIsConfirm] = useState<boolean>(false);
   const [showPopUp, setShopPopUp] = useState<boolean>(false);
   const [readyForDownload, setReadyForDownload] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const cardRef = useRef<HTMLDivElement>(null);
   const frontRef = useRef<HTMLDivElement>(null);
   const backRef = useRef<HTMLDivElement>(null);
@@ -182,10 +192,24 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
       formattedValue = groups ? groups.join(" ") : "";
     }
 
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: value === "",
-    }));
+    if (name == "cardname" && Number(value)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardname: true,
+      }));
+      setErrorMessage("Only letters!");
+    } else if (name == "cardname" && value == "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardname: true,
+      }));
+      setErrorMessage("Can't be blank!");
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        cardname: false,
+      }));
+    }
 
     setInputData((prevData) => ({
       ...prevData,
@@ -228,6 +252,7 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
         backRef,
         readyForDownload,
         setReadyForDownload,
+        errorMessage,
       }}
     >
       {children}

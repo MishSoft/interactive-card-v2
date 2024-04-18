@@ -10,6 +10,7 @@ function InputForm() {
     errors,
     isConfirm,
     setShopPopUp,
+    errorMessage,
   } = useContext(FormContext);
 
   const setCaughtPopUp = (e: React.FormEvent) => {
@@ -36,14 +37,7 @@ function InputForm() {
             placeholder="e.g Jane Appleseed"
           />
           <div className="error-message">
-            <>
-              {errors.cardname ? <span>Can't be blank</span> : ""}
-              {Number(inputData.cardname) ? (
-                <span>Must contain only letters.</span>
-              ) : (
-                ""
-              )}
-            </>
+            <>{errors.cardname && errorMessage}</>
           </div>
         </div>
       </div>
