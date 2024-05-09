@@ -1,6 +1,11 @@
 import { Key, useContext } from "react";
 import { FormContext } from "../../../context/FormContext";
 
+interface FindIMageBackProps {
+  front: string;
+  back: string;
+}
+
 function ColorSection() {
   const {
     caughtData,
@@ -25,12 +30,11 @@ function ColorSection() {
       const findBackImage = selectedCard.cardImages.find(
         (image: { front: string | undefined }) =>
           image.front && image.front.includes(key)
-      );
-      console.log(findBackImage);
-      if (findBackImage) {
-        setSelectedCardBack(findBackImage.back);
-        console.log("Sworia esec");
-      }
+      ) as FindIMageBackProps;
+
+      console.log("This is ", findBackImage);
+      setSelectedCardBack(findBackImage.back);
+
     }
   };
 
