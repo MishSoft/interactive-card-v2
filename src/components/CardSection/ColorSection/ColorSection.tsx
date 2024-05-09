@@ -27,14 +27,16 @@ function ColorSection() {
       selectedCard.cardImages
     ) {
       console.log("Swotria");
-      const findBackImage = selectedCard.cardImages.find(
-        (image: { front: string | undefined }) =>
-          image.front && image.front.includes(key)
-      ) as FindIMageBackProps;
+      const findBackImage: FindIMageBackProps | undefined =
+        selectedCard.cardImages.find(
+          (image: { front: string | undefined }) =>
+            image.front && image.front.includes(key)
+        );
 
-      console.log("This is ", findBackImage);
-      setSelectedCardBack(findBackImage.back);
-
+      if (findBackImage) {
+        setSelectedCardBack(findBackImage.back);
+        console.log("This is ", findBackImage);
+      }
     }
   };
 
