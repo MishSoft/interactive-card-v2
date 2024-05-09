@@ -28,10 +28,11 @@ function CardImage() {
   useEffect(() => {
     if (caughtData && choosedCard) {
       const data = caughtData as CardDataItem[];
-      const findName = data.find(
+      const findName: CardDataItem = data.find(
         (item: CardDataItem) => item.name === choosedCard
-      );
-      setSelectedCard(findName || selectedCard);
+      )!;
+      console.log("This is findname ", findName);
+      setSelectedCard(findName || null);
     }
   }, [caughtData, choosedCard, selectedCard, setSelectedCard]);
 

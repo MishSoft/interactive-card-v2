@@ -17,10 +17,8 @@ interface FormContextProps {
   caughtData: CardDataItem[] | null;
   choosedCard: string;
   setChoosedCard: React.Dispatch<React.SetStateAction<string>>;
-  selectedCard: CardDataItem | string | null;
-  setSelectedCard: React.Dispatch<
-    React.SetStateAction<CardDataItem | string | null>
-  >;
+  selectedCard: CardDataItem | string | null | undefined;
+  setSelectedCard: React.Dispatch<React.SetStateAction<CardDataItem | null>>;
   selectedColor: string | null;
   setSelectedColor: React.Dispatch<React.SetStateAction<string | null>>;
   isFlipped: boolean;
@@ -67,6 +65,7 @@ type ErrorsState = {
 };
 
 interface CardDataItem {
+  cardImages: { front: string; back: string }[];
   name: string;
   frontImage: string;
   backImage: string;
@@ -117,9 +116,7 @@ const FormProvider: React.FC<{ children: React.ReactNode }> = ({
   const [inputData, setInputData] = useState<InitialStateProps>(InitialState);
   const [caughtData, setCaughtData] = useState<CardDataItem[] | null>(null);
   const [choosedCard, setChoosedCard] = useState<string>("BitCamp");
-  const [selectedCard, setSelectedCard] = useState<
-    CardDataItem | string | null
-  >(null);
+  const [selectedCard, setSelectedCard] = useState<CardDataItem | null>(null);
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const [selectedCardBack, setSelectedCardBack] = useState<string>("");

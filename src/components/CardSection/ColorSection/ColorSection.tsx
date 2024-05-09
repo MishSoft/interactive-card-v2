@@ -10,17 +10,21 @@ function ColorSection() {
     selectedCard,
   } = useContext(FormContext);
 
-  const handleColorCard = (e: any) => {
-    const key = e.target.src.split("73").pop() || "";
+  const handleColorCard = (
+    e: React.MouseEvent<HTMLImageElement, MouseEvent>
+  ) => {
+    const key = e.currentTarget.src.split("73").pop() || "";
     setSelectedColor(key);
 
-    // console.log(key);
-    if (selectedCard) {
-      const findBackImage = selectedCard.cardImages.find((image: any) =>
-        image.front.includes(key)
+    if (selectedCard && typeof selectedCard !== "string") {
+      const findBackImage = selectedCard.cardImages.find(
+        (image: { front: string | undefined }) =>
+          image.front && image.front.includes(key)
       );
 
-      setSelectedCardBack(findBackImage?.back);
+      if (findBackImage) {
+        setSelectedCardBack(findBackImage.back);
+      }
     }
   };
 
