@@ -38,10 +38,7 @@ function ColorSection() {
           }) => {
             if (item.name === choosedCard) {
               return item.cardImages.map(
-                (
-                  image: { front: string | undefined },
-                  id: Key | null | undefined
-                ) => (
+                (image: { front: string | undefined }, id: Key) => (
                   <img onClick={handleColorCard} key={id} src={image.front} />
                 )
               );
