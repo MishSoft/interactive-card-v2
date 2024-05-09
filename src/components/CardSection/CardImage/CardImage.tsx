@@ -2,6 +2,7 @@ import { FormContext } from "../../../context/FormContext";
 import { CSSProperties, useContext, useEffect, useState } from "react";
 
 interface CardDataItem {
+  cardImages: { front: string; back: string }[];
   name: string;
   frontImage: string;
   backImage: string;
@@ -25,16 +26,17 @@ function CardImage() {
   const [backTranform, setBackTransform] = useState<CSSProperties>({
     transform: "rotateY(180deg)",
   });
+
   useEffect(() => {
     if (caughtData && choosedCard) {
       const data = caughtData as CardDataItem[];
-      const findName: CardDataItem = data.find(
+      const findName: CardDataItem | undefined = data.find(
         (item: CardDataItem) => item.name === choosedCard
-      )!;
-      console.log("This is findname ", findName ?? null);
-      setSelectedCard(findName ?? null);
+      );
+
+      setSelectedCard(findName || null);
     }
-  }, [caughtData, choosedCard, selectedCard, setSelectedCard]);
+  }, [caughtData, choosedCard, setSelectedCard]);
 
   const Styles = {
     transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",

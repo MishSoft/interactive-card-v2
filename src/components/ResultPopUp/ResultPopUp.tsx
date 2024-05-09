@@ -34,9 +34,9 @@ function ResultPopUp() {
             id="animatedPath"
             d="M28 39.92 36.08 48l16-16"
             stroke="#fff"
-            stroke-width="3"
-            stroke-dasharray="66.3"
-            stroke-dashoffset="66.3"
+            strokeWidth="3"
+            strokeDasharray="66.3"
+            strokeDashoffset="66.3"
           >
             <animate
               attributeName="stroke-dashoffset"
@@ -56,8 +56,8 @@ function ResultPopUp() {
               y2="91.507"
               gradientUnits="userSpaceOnUse"
             >
-              <stop stop-color="#6348FE" />
-              <stop offset="1" stop-color="#610595" />
+              <stop stopColor="#6348FE" />
+              <stop offset="1" stopColor="#610595" />
             </linearGradient>
           </defs>
         </svg>
