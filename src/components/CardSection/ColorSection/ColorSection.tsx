@@ -26,7 +26,7 @@ function ColorSection() {
         (image: { front: string | undefined }) =>
           image.front && image.front.includes(key)
       );
-
+      console.log(findBackImage);
       if (findBackImage) {
         setSelectedCardBack(findBackImage.back);
         console.log("Sworia esec");
