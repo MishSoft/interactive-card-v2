@@ -2,20 +2,20 @@
   {
     "id": 1,
     "name": "BitCamp",
-    "frontImage": "/public/Bitcamp/bitcamp-front.svg",
-    "backImage": "/public/Bitcamp/bitcamp-back.svg",
+    "frontImage": "/Bitcamp/bitcamp-front.svg",
+    "backImage": "/Bitcamp/bitcamp-back.svg",
     "cardImages": [
       {
-        "front": "/public/Bitcamp/bitcamp-front.svg",
-        "back": "/public/Bitcamp/bitcamp-back.svg"
+        "front": "/Bitcamp/bitcamp-front.svg",
+        "back": "/Bitcamp/bitcamp-back.svg"
       },
       {
-        "front": "/public/Bitcamp/bitcamp-front-black.svg",
-        "back": "/public/Bitcamp/bitcamp-back-black.svg"
+        "front": "/Bitcamp/bitcamp-front-black.svg",
+        "back": "/Bitcamp/bitcamp-back-black.svg"
       },
       {
-        "front": "/public/Bitcamp/bitcamp-front-pink.svg",
-        "back": "/public/Bitcamp/bitcamp-back-pink.svg"
+        "front": "/Bitcamp/bitcamp-front-pink.svg",
+        "back": "/Bitcamp/bitcamp-back-pink.svg"
       }
     ]
   },
@@ -23,20 +23,20 @@
   {
     "id": 2,
     "name": "King Tamar",
-    "frontImage": "/public/KingTamar/tamar-front-green.svg",
-    "backImage": "/public/KingTamar/tamar-back-green.svg",
+    "frontImage": "/KingTamar/tamar-front-green.svg",
+    "backImage": "/KingTamar/tamar-back-green.svg",
     "cardImages": [
       {
-        "front": "/public/KingTamar/tamar-front-green.svg",
-        "back": "/public/KingTamar/tamar-back-green.svg"
+        "front": "/KingTamar/tamar-front-green.svg",
+        "back": "/KingTamar/tamar-back-green.svg"
       },
       {
-        "front": "/public/KingTamar/tamar-front-blue.svg",
-        "back": "/public/KingTamar/tamar-back-blue.svg"
+        "front": "/KingTamar/tamar-front-blue.svg",
+        "back": "/KingTamar/tamar-back-blue.svg"
       },
       {
-        "front": "/public/KingTamar/tamar-front-black.svg",
-        "back": "/public/KingTamar/tamar-back-black.svg"
+        "front": "/KingTamar/tamar-front-black.svg",
+        "back": "/KingTamar/tamar-back-black.svg"
       }
     ]
   },
@@ -44,20 +44,20 @@
   {
     "id": 3,
     "name": "Colliseum",
-    "frontImage": "/public/Coliseum/coliseum-front-orange1.svg",
-    "backImage": "/public/Coliseum/coliseum-back-orange1.svg",
+    "frontImage": "/Coliseum/coliseum-front-orange1.svg",
+    "backImage": "/Coliseum/coliseum-back-orange1.svg",
     "cardImages": [
       {
-        "front": "/public/Coliseum/coliseum-front-orange1.svg",
-        "back": "/public/Coliseum/coliseum-back-orange1.svg"
+        "front": "/Coliseum/coliseum-front-orange1.svg",
+        "back": "/Coliseum/coliseum-back-orange1.svg"
       },
       {
-        "front": "/public/Coliseum/coliseum-front-orange2.svg",
-        "back": "/public/Coliseum/coliseum-back-orange2.svg"
+        "front": "/Coliseum/coliseum-front-orange2.svg",
+        "back": "/Coliseum/coliseum-back-orange2.svg"
       },
       {
-        "front": "/public/Coliseum/coliseum-front-orange3.svg",
-        "back": "/public/Coliseum/coliseum-back-orange3.svg"
+        "front": "/Coliseum/coliseum-front-orange3.svg",
+        "back": "/Coliseum/coliseum-back-orange3.svg"
       }
     ]
   }
