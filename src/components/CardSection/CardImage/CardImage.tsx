@@ -31,8 +31,8 @@ function CardImage() {
       const findName: CardDataItem = data.find(
         (item: CardDataItem) => item.name === choosedCard
       )!;
-      console.log("This is findname ", findName);
-      setSelectedCard(findName || null);
+      console.log("This is findname ", findName ?? null);
+      setSelectedCard(findName ?? null);
     }
   }, [caughtData, choosedCard, selectedCard, setSelectedCard]);
 

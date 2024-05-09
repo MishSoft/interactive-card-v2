@@ -15,7 +15,7 @@ interface FormContextProps {
   inputData: InitialStateProps;
   handleInputData: (e: ChangeEvent<HTMLInputElement>) => void;
   caughtData: CardDataItem[] | null;
-  choosedCard: string;
+  choosedCard: string | null;
   setChoosedCard: React.Dispatch<React.SetStateAction<string>>;
   selectedCard: CardDataItem | string | null | undefined;
   setSelectedCard: React.Dispatch<React.SetStateAction<CardDataItem | null>>;
