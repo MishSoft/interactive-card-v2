@@ -16,7 +16,11 @@ function ColorSection() {
     const key = e.currentTarget.src.split("73").pop() || "";
     setSelectedColor(key);
 
-    if (selectedCard && typeof selectedCard !== "string") {
+    if (
+      selectedCard &&
+      typeof selectedCard !== "string" &&
+      selectedCard.cardImages
+    ) {
       const findBackImage = selectedCard.cardImages.find(
         (image: { front: string | undefined }) =>
           image.front && image.front.includes(key)
@@ -31,22 +35,18 @@ function ColorSection() {
   return (
     <div className={`card-colors`}>
       {caughtData &&
-        caughtData.map(
-          (item: {
-            name: string;
-            cardImages: { front: string | undefined }[];
-          }) => {
-            if (item.name === choosedCard) {
-              return item.cardImages.map(
-                (image: { front: string | undefined }, id: Key) => (
-                  <img onClick={handleColorCard} key={id} src={image.front} />
-                )
-              );
-            } else {
-              return null;
-            }
+        caughtData.map((item) => {
+          if (item.name === choosedCard && item.cardImages) {
+            return item.cardImages.map(
+              (
+                image: { front: string | undefined },
+                id: Key | null | undefined
+              ) => <img onClick={handleColorCard} key={id} src={image.front} />
+            );
+          } else {
+            return null;
           }
-        )}
+        })}
     </div>
   );
 }
