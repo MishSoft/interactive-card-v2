@@ -49,8 +49,6 @@ function CardImage() {
     }));
   }, [readyForDownload]);
 
-  console.log("Edd", selectedCard);
-
   return (
     <div className="card-border" style={{ ...Styles }} ref={cardRef}>
       {selectedCard && typeof selectedCard !== "string" && (

@@ -21,6 +21,7 @@ function ColorSection() {
       typeof selectedCard !== "string" &&
       selectedCard.cardImages
     ) {
+      console.log("Swotria");
       const findBackImage = selectedCard.cardImages.find(
         (image: { front: string | undefined }) =>
           image.front && image.front.includes(key)
@@ -28,6 +29,7 @@ function ColorSection() {
 
       if (findBackImage) {
         setSelectedCardBack(findBackImage.back);
+        console.log("Sworia esec");
       }
     }
   };
