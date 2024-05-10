@@ -1,5 +1,4 @@
-Interactive Card v2
-Custom Card Creator is a web application that allows users to customize virtual credit card designs. Users can choose from a selection of pre-designed cards, customize card details such as card number, name, expiration date, and security code, and preview the final design before downloading it.
+Interactive Card v2  is a web application that allows users to customize virtual credit card designs. Users can choose from a selection of pre-designed cards, customize card details such as card number, name, expiration date, and security code, and preview the final design before downloading it.
 
 Features
 Choose from a variety of pre-designed card templates.
